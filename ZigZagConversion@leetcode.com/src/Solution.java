@@ -50,27 +50,18 @@ public class Solution {
 		
 		int lastIdx = s.length() - 1;
 		int matrixColLength = computeRigaCol(numRows, lastIdx)[1]+1;
-		char[][] matrix = new char[numRows][matrixColLength];
-		for(int ir = 0; ir <matrix.length;ir++)
-		{
-			Arrays.fill(matrix[ir], (' '));
-		}
-		
+ 
+		char[] matrix = new char[numRows * matrixColLength];
+ 
+		Arrays.fill(matrix, ' ');
 		
 		for(int k = 0; k< s.length(); k++)
 		{
 			int[] idxs = computeRigaCol(numRows,k);
-			matrix[idxs[0]][idxs[1]] = s.charAt(k);
+			matrix[  idxs[0] * matrixColLength + idxs[1]   ] = s.charAt(k);
 		}
-		
-		StringBuffer sb = new StringBuffer();
-		
-		for(int ir = 0; ir < matrix.length; ir++)
-		{
-			sb.append(new String(matrix[ir]).replace(" ", ""));
-		}
-		
-		return sb.toString();
+ 
+		return new String(matrix).replace(" ", "");
 	}
 	
 	/*
@@ -86,20 +77,17 @@ public class Solution {
  
 		int ibucket = k  / (2*n-2);
 		int startcol = ibucket*(n-1);
-		int col = 0; 
-		int riga = 0;
+		 
 		int offset = k%(2*n-2);
 		if(offset < n)
 		{
-			col = startcol;
-			riga = offset;
+			 
+			return new int[] {offset,startcol};
 		}
 		else
 		{
 			int delta = offset-(n-1);
-			col = startcol + delta;
-			riga = (n-1)-delta;
+			return new int[] {(n-1)-delta, startcol+delta};
 		}
-		return new int[] {riga,col};
 	}
 }
