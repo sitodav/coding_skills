@@ -46,10 +46,13 @@ public class LongestPalindromeSubstr {
 			
 		}
 		
-		/*for the substr of size > 2 (distance varying from 2 to n-1)
-		 * the value in the matrix is true only if the chars are equals in i,j
+		/*for the substr of size >= 3 (distance varying from 2 to n-1)
+		 * the value is true only if the chars are equals in i,j
 		 * and the matrixs old true in matrix[i+1][j-1] (here we are using the memoization
-		 * in a bottom up approach)
+		 * in a bottom up approach).
+		 * Save the value in the memoization matrix
+		 * The longest substring has size of the longest distance between i and j with true value,
+		 * +1
 		 */
 		for(int distance = 2; distance <= toCheck.length()-1; distance++ )
 		{
