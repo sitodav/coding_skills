@@ -11,7 +11,7 @@ public class InsertionSort {
 		{
 			System.out.print(a[i]+",");
 		}
-		System.out.println();
+		System.out.println("\nindex of element 12 in ordered array: "+binarySearch(a,12,0,a.length-1));
 	}
 	
 	public static void insertionSort(int[] elms)
@@ -30,6 +30,24 @@ public class InsertionSort {
 			elms[j+1] = t;
 			 
 		}
+		
+	}
+	
+	
+	private static int binarySearch(int[] toSearch, int key, int istart, int iend)
+	{
+		 
+		int m = (int)Math.floor(((istart+iend) * 0.5));
+		
+		if(toSearch[m] == key)
+			return m;
+		if(istart == iend)
+			return -1;
+		if(toSearch[m] > key)
+			return binarySearch(toSearch,key,istart,m-1);
+		else
+			return binarySearch(toSearch,key,m+1,iend);
+		
 		
 	}
 }
