@@ -1,5 +1,5 @@
 
-public class Singleton {
+public class SingletonPattern {
 
 	private static class MyCustomSingleton
 	{
