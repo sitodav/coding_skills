@@ -5,20 +5,25 @@
  * and we cannot change it
  * (for example if we want to use legacy code that cannot be changed 
  * otherwise it would break something else)
+ * ADAPTER USE COMPOSITION (HAS INTERFACE) + INHERITANCE (IS A INTERFACE)
+ * LIKE DECORATOR AND PROXY
+ * 	THE DIFFERENCE IS THAT ADAPTER CHANGE THE INTERFACE RESPECT TO THE CLIENT
+ *  DECORATOR ENHANCE THE INTERFACE TO THE CLIENT
+ *  PROXY PROVIDES THE SAME INTERFACE
  */
 public class AdapterPattern {
 
 	public static interface Automotive
 	{
-		public double getSpeed(); 
+		public float getSpeed(); 
 	}
 	
 	public static class AmericanBrandAutomobile implements Automotive
 	{
 
 		@Override
-		public double getSpeed() { //returns the speed as mph/h
-			return 80.0;
+		public float getSpeed() { //returns the speed as mph/h (float)
+			return 80.0f;
 		}
 	}
 	
@@ -40,7 +45,12 @@ public class AdapterPattern {
 			return 1.6 * speedToBeConverted; //mph to kmh
 		}
 		@Override
-		public double getSpeed() {
+		public float getSpeed() {
+			return this.automotiveToBeAdapted.getSpeed();
+		}
+		//adapted method, HERE THE ADAPTER CHANGE the interface to the client because it returns double
+		public double getKmhSpeed() 
+		{
 			return this.convertMphToKmH(this.automotiveToBeAdapted.getSpeed());
 		}
 		
@@ -53,6 +63,6 @@ public class AdapterPattern {
 		System.out.println("In america, my speed is "+americanCar.getSpeed()+" mph");
 		//With the adapter
 		EuropeanAdapterAutomobile adapter = new EuropeanAdapterAutomobile(americanCar);
-		System.out.println("In europe, my speed is "+adapter.getSpeed()+" kmh");
+		System.out.println("In europe, my speed is "+adapter.getKmhSpeed()+" kmh");
 	}
 }

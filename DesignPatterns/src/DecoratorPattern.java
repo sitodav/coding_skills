@@ -1,7 +1,15 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Decorator {
+/*
+DECORATOR USE COMPOSITION (HAS INTERFACE) + INHERITANCE (IS A INTERFACE)
+* LIKE ADAPTER AND PROXY
+* 	THE DIFFERENCE IS THAT ADAPTER CHANGE THE INTERFACE RESPECT TO THE CLIENT
+*  DECORATOR ENHANCE THE INTERFACE TO THE CLIENT
+*  PROXY PROVIDES THE SAME INTERFACE
+*  
+*/
+public class DecoratorPattern {
 
 	/*Common Interface and plain classes */
 	
@@ -47,10 +55,11 @@ public class Decorator {
 		{
 			return new Pizza();
 		}
-	}
+	} 
 	
 	/*Decorator, to decore/aggregate from multiple classes*/
-	/*The decorator is a Edible, and has a Edible (composition + inheritance )*/
+	/*The decorator is a Edible, and has a Edible (composition + inheritance )
+	 * and enhance (in this case using aggregation) the Eadible interface */
 	public static class CompositeOrder implements Eadible
 	{
 		public Eadible pizza;
