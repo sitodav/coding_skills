@@ -63,7 +63,8 @@ public class PrototypePattern implements Cloneable {
 		
 		@Override
 		protected Object clone() throws CloneNotSupportedException {
-			Employee emp = new Employee(this.getName(),this.getSurname(),this.getNumber());
+			Student emp = new Student(this.getName(),this.getSurname(),
+					this.getNumber());
 			return emp;
 		}
 
