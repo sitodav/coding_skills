@@ -22,10 +22,7 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
 	@Autowired
 	UserServiceImpl myUserServiceImpl;
 
-	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+	
 
 	/*
 	 * here we disable csrf token , and use httpBasic with no session on every api
@@ -51,6 +48,11 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
 	public void configureGlobal(@Autowired AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(myUserServiceImpl)
 			.passwordEncoder(passwordEncoder());
+	}
+	
+	@Bean
+	public BCryptPasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
 	}
 
 	 
