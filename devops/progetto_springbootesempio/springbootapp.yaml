@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testkub-app
+spec:
+  selector:
+      matchLabels:
+        app: testkub-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: testkub-app
+    spec:
+      containers:
+        - name: testkub-app
+          image: testkub:latest
+          imagePullPolicy: Never
+          ports:
+          - containerPort: 8081
+          env:
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: mongodb-configmap 
+                  key: database_host
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: mongodb-configmap 
+                  key: database_name
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: mongodb-configmap 
+                  key: database_port
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-secret
+                  key: mongo-root-username
+            - name: DB_PW
+              valueFrom: 
+                secretKeyRef:
+                  name: mongodb-secret
+                  key: mongo-root-password
+                  
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: testkub-service
+spec:
+  selector:
+    app: testkub-app
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8081
+    nodePort: 30081
+  type: NodePort

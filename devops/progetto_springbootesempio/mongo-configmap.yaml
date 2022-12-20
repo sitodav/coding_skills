@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongodb-configmap
+data:
+  #for the mongoexpress pod
+  database_url: mongodb-service
+  #for the spring boot app
+  database_host: mongodb-service
+  database_port: "27017"
+  database_name: test
