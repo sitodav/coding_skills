@@ -52,29 +52,8 @@ Una volta startato l'applicativo (lo si puo' buildare con mvn clean install, e p
 questo è raggiungibile all'url http://127.0.0.1:8080/davidesito
 (per generare l'OTP a partire dal QR salvato dopo la generazione, si puo' usare ad esempio Google Authenticator)
 
-<img
-  src="https://github.com/sitodav/coding_skills/blob/develop/spring%20security/2FA_FormBased_Thymeleaf/gitimages/2fa1.png"
-  alt="Alt text"
-  title="Optional title"
-  style="display: inline-block; margin: 0 auto; max-width: 200px">
-  
-  <img
-  src="https://github.com/sitodav/coding_skills/blob/develop/spring%20security/2FA_FormBased_Thymeleaf/gitimages/2fa2.png"
-  alt="Alt text"
-  title="Optional title"
-  style="display: inline-block; margin: 0 auto; max-width: 200px">
-  
-  <img
-  src="https://github.com/sitodav/coding_skills/blob/develop/spring%20security/2FA_FormBased_Thymeleaf/gitimages/2fa3.png"
-  alt="Alt text"
-  title="Optional title"
-  style="display: inline-block; margin: 0 auto; max-eigt: 200px; max-width: 100px">
-  
-  <img
-  src="https://github.com/sitodav/coding_skills/blob/develop/spring%20security/2FA_FormBased_Thymeleaf/gitimages/2fa4.png"
-  alt="Alt text"
-  title="Optional title"
-  style="display: inline-block; margin: 0 auto;  max-height: 200px; max-width: 100px">
  
+ 
+ ![im](/gitimages/2fa1.png "Optional title")
 
 
