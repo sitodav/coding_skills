@@ -54,6 +54,6 @@ questo è raggiungibile all'url http://127.0.0.1:8080/davidesito
 
  
  
- ![im](/https://github.com/sitodav/coding_skills/blob/develop/spring%20security/2FA_FormBased_Thymeleaf/gitimages/2fa1.png "Optional title")
+ ![img](/https://github.com/sitodav/coding_skills/blob/develop/spring%20security/2FA_FormBased_Thymeleaf/gitimages/2fa1.png "Optional title")
 
 
