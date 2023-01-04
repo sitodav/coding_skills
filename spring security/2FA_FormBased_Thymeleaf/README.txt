@@ -46,6 +46,9 @@ Nel nostro caso il codice OTP (che comunque ha una sua scadenza) viene quindi fo
 Per prevedere quindi che oltre a username e password , venga controllato anche l'otp, dobbiamo quindi modificare l'auth provider di spring, fornendone uno che si agganci a monte
 e faccia il controllo del codice inviato dall'utente rispetto al secret associatogli a db.
 Questo viene quindi fatto nelle classi contenute nel package sito.davide.conf.mfa , e il provider aggiuntivo è registrato sempre nel @Configuration principale sito.davide.conf.SecurityConf .
-Le classi sono commentate.
+Le classi sono commentate all'occorrenza.
 
+Una volta startato l'applicativo (lo si puo' buildare con mvn clean install, e poi lanciare il classico mvn spring-boot:run , oppure lanciare da eclipse)
+questo è raggiungibile all'url http://127.0.0.1:8080/davidesito
+(per generare l'OTP a partire dal QR salvato dopo la generazione, si puo' usare ad esempio Google Authenticator)
 
