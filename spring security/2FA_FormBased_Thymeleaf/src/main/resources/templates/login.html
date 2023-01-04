@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<title>2FA Auth Application</title>
+	<meta charset="UTF-8">
+	<title>Login</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+	<body class="align">
+
+		<div class="grid">
+
+
+			<!--per errori generici -->
+			<div th:if="${errorFlag}" class="text--center">
+				<p class="text-error" th:utext="${errorMessage}">Internal Server Error</p>
+			</div>
+			<!--successo -->
+			<div th:if="${successFlag}" class="text--center">
+				<p class="text-success" id="successMessage" th:utext="${successMessage}">Operazione eseguita con successo</p>
+			</div>
+
+			<!--login form -->
+			<form th:action="@{/login}" method="post" class="form login">
+				<br />
+
+				<!--username -->
+				<div class="form__field">
+					<label for="login__username"><svg class="icon">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use>
+						</svg><span class="hidden">Username</span></label>
+					<input id="login__username" type="text" name="username" class="form__input" placeholder="Username"
+						required>
+				</div>
+				<!--password -->
+				<div class="form__field">
+					<label for="login__password"><svg class="icon">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lock"></use>
+						</svg><span class="hidden">Password</span></label>
+					<input id="login__password" type="password" name="password" class="form__input"
+						placeholder="Password" required>
+				</div>
+				<!--2fa token -->
+				<div class="form__field">
+					<label for="login__otpCode"><svg class="icon">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lock"></use>
+						</svg><span class="hidden">OTP CODE</span></label>
+					<input id="login__otpCode" type="text" name="otpCode" class="form__input"
+						placeholder="OTP (if required)" >
+				</div>
+
+
+				<div class="form__field">
+					<input type="submit" value="Log in">
+				</div>
+
+			</form>
+			<br>
+
+
+			<!--register button -->
+			<a href="register" th:href="@{/register}">Register</a>
+
+		</div>
+
+
+
+	</body>
+	
+	
+
+</html>

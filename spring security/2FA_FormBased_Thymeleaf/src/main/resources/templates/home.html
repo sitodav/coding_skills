@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<title>Benvenuto sull'app di davide sito</title>
+	<meta charset="UTF-8">
+	<title>Home</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="align">
+	<div class="grid">
+		<div class="text--center">
+			Benvenuto <span class="text-error" th:utext="${session.user['username']}"> </span>
+		</div>
+		</br>
+
+		<form method="post" class="form login" th:action="@{/cambiaNotifica}" th:object="${user}">
+
+
+
+			<!--per errori generici -->
+			<div th:if="${errorFlag}" class="text--center">
+				<p class="text-error" th:utext="${errorMessage}">Internal Server Error</p>
+			</div>
+
+			<!--successo -->
+			<div th:if="${successFlag}" class="text--center">
+				<div class="text-success"  >Operazione eseguita con
+					successo</div>
+			</div>
+
+			<div th:unless="${successFlag}" class="text--center">
+				<div class="text-success">
+					Scegli il tipo di notifica alla login
+				</div>
+			</div>
+
+
+			<!--tipi di notifica checkbox-->
+			<div class="leftText">
+				<input id="notifyMail" type="checkbox" name="notifyMail" class="form__input" th:field="*{notifyMail}"
+					placeholder="notifyMail">
+				Mail
+			</div>
+			<div class="leftText">
+				<input id="notifySms" type="checkbox" name="notifySms" class="form__input" th:field="*{notifySms}"
+					placeholder="notifySms">
+				Sms
+			</div>
+
+			<div class="leftText">
+				<input id="notifySlack" type="checkbox" name="notifySlack" class="form__input" th:field="*{notifySlack}"
+					placeholder="notifySlack">
+				Slack
+			</div>
+
+			<div class="leftText">
+				<input id="notifyWhatsup" type="checkbox" name="notifyWhatsup" class="form__input"
+					th:field="*{notifyWhatsup}" placeholder="notifyWhatsup">
+				Whatsup
+			</div>
+
+
+
+			<div class="form__field">
+				<input type="submit" value="Save">
+			</div>
+
+		</form>
+
+		<br />
+
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Log Out" />
+		</form>
+
+	</div>
+</body>
+
+</html>

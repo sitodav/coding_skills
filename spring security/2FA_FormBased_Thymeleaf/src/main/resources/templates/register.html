@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<title>2FA Auth Application</title>
+	<meta charset="UTF-8">
+	<title>Login</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+	<body class="align">
+
+		<div class="grid">
+
+			<!--per errori generici-->
+			<div th:if="${errorFlag}" class="text--center">
+				<p class="text-error" th:utext="${errorMessage}">Internal Server Error</p>
+			</div>
+			<div th:if="${successFlag}" class="text--center">
+				<p class="text-success" th:utext="${successMessage}">Operazione eseguita con successo</p>
+				<p th:if="${isTwoFactAuth}" class="text-success">Scansiona il QR e salvalo nell'app'</p>
+			</div>
+
+			<br>
+			<!--register form -->
+			<form method="post" class="form login" th:action="@{/register}" th:object="${user}">
+
+
+				<!--username-->
+				<div class="form__field">
+					<label for="username"><svg class="icon">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#username"></use>
+						</svg><span class="hidden">Username</span></label>
+					<input id="username" type="text" name="username" class="form__input" th:field="*{username}"
+						placeholder="Username" required>
+				</div>
+
+
+				<!--password-->
+				<div class="form__field">
+					<label for="password"><svg class="icon">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#password"></use>
+						</svg><span class="hidden">Password</span></label>
+					<input id="password" type="password" name="password" class="form__input" th:field="*{password}"
+						placeholder="Password" required>
+				</div>
+
+
+				<!--password confirmation-->
+				<div class="form__field">
+					<label for="passwordConfirmation"><svg class="icon">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#password"></use>
+						</svg><span class="hidden">Confirm password</span></label>
+					<input id="passwordConfirmation" type="password" name="passwordConfirmation" class="form__input"
+						th:field="*{passwordConfirmation}" placeholder="Confirm password" required>
+				</div>
+
+
+				<!--cf-->
+				<div class="form__field">
+					<label for="cf"><svg class="icon">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cf"></use>
+						</svg><span class="hidden">CF</span></label>
+					<input id="cf" type="text" name="cf" class="form__input" th:field="*{cf}"
+						placeholder="Codice Fiscale" required>
+				</div>
+
+
+				<!--email-->
+				<div class="form__field">
+					<label for="email"><svg class="icon">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#email"></use>
+						</svg><span class="hidden">EMAIL</span></label>
+					<input id="email" type="text" name="email" class="form__input" th:field="*{email}"
+						placeholder="Email" required>
+				</div>
+
+				<!--numero di telefono-->
+				<div class="form__field">
+					<label for="telephone"><svg class="icon">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#telephone"></use>
+						</svg><span class="hidden">TEL</span></label>
+					<input id="telephone" type="text" name="telephone" class="form__input" th:field="*{telephone}"
+						placeholder="Telephone" required>
+				</div>
+
+				<!--2FA checkbox-->
+				<div class="leftText">
+					<input id="twoFactAuth" type="checkbox" name="twoFactAuth" class="form__input"
+						th:field="*{twoFactAuth}" placeholder="2FAuth">
+					Autenticazione a 2 fattori
+				</div>
+
+				<!--documento allegato-->
+				<div class="leftText">
+					<input id="doc" type="file" name="doc" class="form__input" th:field="*{doc}"
+						placeholder="Documento Allegato" required>
+					Documento allegato
+				</div>
+
+				<!--per errori campi form -->
+				<p th:errors="*{username}" class="errorP text-error" th:if="${#fields.hasErrors('username')}"></p>
+				<p th:errors="*{password}" class="errorP text-error" th:if="${#fields.hasErrors('password')}"></p>
+				<p th:errors="*{passwordConfirmation}" class="errorP text-error"
+					th:if="${#fields.hasErrors('passwordConfirmation')}"></p>
+				<p th:errors="*{cf}" class="errorP text-error" th:if="${#fields.hasErrors('cf')}"></p>
+				<p th:errors="*{email}" class="errorP text-error" th:if="${#fields.hasErrors('email')}"></p>
+				<p th:errors="*{telephone}" class="errorP text-error" th:if="${#fields.hasErrors('telephone')}"></p>
+				<p th:errors="*{twoFactAuth}" class="errorP text-error" th:if="${#fields.hasErrors('twoFactAuth')}"></p>
+				
+				
+				<div th:if="${successFlag}" class="text--center">
+					<img class="text--center" th:attr="src=@{${otpQR}}" />
+				</div>
+				
+				
+				<div class="form__field">
+					<input type="submit" value="Signup">
+				</div>
+
+			</form>
+			<br>
+
+			<!--login-->
+			<a href="logout" th:href="@{/logout}">Login</a>
+
+		</div>
+
+
+	</body>
+
+
+</body>
+
+</html>
