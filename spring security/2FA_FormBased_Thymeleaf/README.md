@@ -52,9 +52,11 @@ e faccia il controllo del codice inviato dall'utente rispetto al secret associat
 Questo viene quindi fatto nelle classi contenute nel package sito.davide.conf.mfa , e il provider aggiuntivo è registrato sempre nel @Configuration principale sito.davide.conf.SecurityConf .
 Le classi sono commentate all'occorrenza.
 
-Una volta startato l'applicativo (lo si puo' buildare con mvn clean install, e poi lanciare il classico mvn spring-boot:run , oppure lanciare da eclipse)
-questo è raggiungibile all'url http://127.0.0.1:8080/davidesito
-(per generare l'OTP a partire dal QR salvato dopo la generazione, si puo' usare ad esempio Google Authenticator)
+Si puo' buildare l'applicativo con mvn clean install, e poi lanciare il classico mvn spring-boot:run , oppure lanciare da eclipse.
+NB: nell'application.properties si punta ad un'istanza di MariaDB che deve essere girare sulla porta 3306, con root/password come credenziali.
+Ho preferito questo ad un H2 per evitare di dover reinserire ogni volta utenti (sebbene H2 permetta di scrivere comunque su file, mi sembrava una complicanza inutile visto che bene o male tutti i pc hanno sempre un'istanza di mysql/mariadb disponibile).
+L'applicativo è raggiungibile all'url http://127.0.0.1:8080/davidesito (il server.servlet.context-path è su /davidesito, la porta server.port è lasciata di default a 8080).
+Per generare l'OTP a partire dal QR salvato dopo la generazione, si puo' usare ad esempio Google Authenticator.
 
  
  
