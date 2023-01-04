@@ -53,7 +53,7 @@ questo è raggiungibile all'url http://127.0.0.1:8080/davidesito
 (per generare l'OTP a partire dal QR salvato dopo la generazione, si puo' usare ad esempio Google Authenticator)
 
 <img
-  src="/gitimages/2fa1.png"
+  src="https://github.com/sitodav/coding_skills/blob/develop/spring%20security/2FA_FormBased_Thymeleaf/gitimages/2fa1.png"
   alt="Alt text"
   title="Optional title"
   style="display: inline-block; margin: 0 auto; max-width: 300px">
