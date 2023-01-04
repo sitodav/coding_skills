@@ -68,13 +68,13 @@ questo è raggiungibile all'url http://127.0.0.1:8080/davidesito
   src="https://github.com/sitodav/coding_skills/blob/develop/spring%20security/2FA_FormBased_Thymeleaf/gitimages/2fa3.png"
   alt="Alt text"
   title="Optional title"
-  style="display: inline-block; margin: 0 auto; max-width: 100px">
+  style="display: inline-block; margin: 0 auto; max-height: 200px; max-width: 100px">
   
   <img
   src="https://github.com/sitodav/coding_skills/blob/develop/spring%20security/2FA_FormBased_Thymeleaf/gitimages/2fa4.png"
   alt="Alt text"
   title="Optional title"
-  style="display: inline-block; margin: 0 auto; max-width: 100px">
+  style="display: inline-block; margin: 0 auto;  max-height: 200px; max-width: 100px">
  
 
 
