@@ -7,12 +7,19 @@
 Lo stack tecnologico utilizzato è il seguente:
 
 -Spring Boot 2.7.7
+
 -Spring Web : per architettura MVC
+
 -Spring Data JPA
+
 -Spring Security
+
 -Spring Thymeleaf : come tecnologia di templating
+
 -Spring Mail : per esempio di configurazione per la notifica delle mail
+
 -Java 1.8
+
 -MariaDB (connettore MariaDB)
 
 La scelta di utilizzare thymeleaf come tecnologia di view/templating ed un approccio MVC/Simil-monolitico (piuttosto che REST/microservizio) deriva dal fatto di 
