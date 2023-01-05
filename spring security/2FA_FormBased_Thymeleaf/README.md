@@ -60,7 +60,8 @@ Questo viene quindi fatto nelle classi contenute nel package sito.davide.conf.mf
 Le classi sono commentate all'occorrenza.
 
 Si puo' buildare l'applicativo con mvn clean install, e poi lanciare il classico mvn spring-boot:run , oppure lanciare da eclipse.
-NB: nell'application.properties si punta ad un'istanza di MariaDB che deve essere girare sulla porta 3306, con root/password come credenziali.
+
+NB: nell'application.properties si punta ad un'istanza di MariaDB che deve girare sulla porta 3306, con root/password come credenziali.
 Ho preferito questo ad un H2 per evitare di dover reinserire ogni volta utenti (sebbene H2 permetta di scrivere comunque su file, mi sembrava una complicanza inutile visto che bene o male tutti i pc hanno sempre un'istanza di mysql/mariadb disponibile).
 L'applicativo è raggiungibile all'url http://127.0.0.1:8080/davidesito (il server.servlet.context-path è su /davidesito, la porta server.port è lasciata di default a 8080).
 Per generare l'OTP a partire dal QR salvato dopo la generazione, si puo' usare ad esempio Google Authenticator.
