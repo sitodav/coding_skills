@@ -55,7 +55,7 @@ Good luck!
 ----------------------------------
 DEVELOPMENT
 
-<<<SECURITY IMPLEMENTATION>>>
+ 
 	-The application uses spring security basic authentication , with session.
 	 (basic authentication requires base 64encoding for both username and password to be send at least one time, if session is used, like in this case.
 	 It should be advised to use POSTMAN instead of swagger-ui to try challenging the API with different users to see different results, because
