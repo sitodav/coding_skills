@@ -86,6 +86,7 @@ You can produce a running docker image using the native maven plugin BuilderPack
 mvn spring-boot:build-image -Dspring-boot.build-image.imageName=pilotes
 
 The image for the application (pilotes) will be sent do your running docker instance.
+
 ----------------------------------
 
 EXAMPLE FOR ORDER CREATION
