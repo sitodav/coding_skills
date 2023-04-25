@@ -100,8 +100,38 @@ public class OrderServiceImpl implements OrderService
 	@Override
 	public List<OrderDTO> searchOrders(SearchDTO searchRequest) throws Exception
 	{
-		// TODO Auto-generated method stub
-		return null;
+		 
+		
+		try
+		{
+			/*just a quick example */
+			List<OrderDTO> results = new ArrayList<>();
+			
+			List<TbUser> possibleUsers = userDao.findByUsernameContainingIgnoreCase(searchRequest.getUsername());
+			for(TbUser user : possibleUsers)
+			{
+				List<TbOrder> orders = user.getOrders();
+				if(null != orders)
+				{
+					for(TbOrder orderEntity : orders)
+					{
+						OrderDTO ordDTO = GenericAtomicMapper.copyObject(orderEntity, OrderDTO.class);
+						UserDTO usrDTO = GenericAtomicMapper.copyObject(user, UserDTO.class);
+						ordDTO.setUser(usrDTO);
+						
+						results.add(ordDTO);
+					}
+				}
+			}
+			
+			return results;
+		}
+		catch(Exception ex)
+		{
+			log.error("Error custom search",ex);
+			throw ex;
+		}
+		
 	}
 
 	@Override

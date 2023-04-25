@@ -11,5 +11,7 @@ public class SearchDTO implements Serializable
 {
 
 	private static final long serialVersionUID = -1566694546736449342L;
-
+	
+	private String username;
+	 
 }

@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import sito.davide.entity.TbOrder;
+import sito.davide.entity.TbUser;
 
 public interface OrderDao extends JpaRepository<TbOrder, Long>
 {
@@ -15,4 +16,5 @@ public interface OrderDao extends JpaRepository<TbOrder, Long>
 	
 	@Query("select o from TbOrder o where o.orderStatus in :status")
 	List<TbOrder> findOrdersInStatus(@Param("status") List<String> status);
+	
 }

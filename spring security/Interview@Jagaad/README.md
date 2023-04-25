@@ -80,16 +80,16 @@ DEVELOPMENT
 	are configured in the db.
 
 
-NB: you don't need the docker compose.
-You can produce a running docker image using the native maven plugin BuilderPack with the following command:
+  NB: you don't need the docker compose.
+  You can produce a running docker image using the native maven plugin BuilderPack with the following command:
 
-mvn spring-boot:build-image -Dspring-boot.build-image.imageName=pilotes
+  mvn spring-boot:build-image -Dspring-boot.build-image.imageName=pilotes
 
-The image for the application (pilotes) will be sent do your running docker instance.
+  The image for the application (pilotes) will be sent do your running docker instance.
 
 ----------------------------------
 
-EXAMPLE FOR ORDER CREATION
+**EXAMPLE FOR ORDER CREATION**
  
 POST: /order
 json payload request : 
@@ -121,9 +121,12 @@ And will return it
 }
 
 ----------------------------------
-EXAMPLE FOR ORDER DETAIL
+
+**EXAMPLE FOR ORDER DETAIL**
 GET: /order/{orderNumber}    
+
 for example http://localhost:8082/pilotes/order/113a2139-8214-41b7-9622-57a45ad14ea2
+
 will return 
 
 {
@@ -144,14 +147,49 @@ will return
 }
 
 
--------------------------------
-BONUS&EXTRA
-If we try to get order info (and the requesting user is not ADMIN) from the order of another user we will be blocked.
-Same thing if we try to get infos of another user and we are not ADMIN.
+----------------------------------
 
+**EXAMPLE FOR USER DETAILS**
+GET: /order/{orderNumber}    
+
+for example http://localhost:8082/pilotes/user/df9566de-3c1d-43a9-a979-0f2dc1c32a96
+
+will return 
+
+{
+    "userNumber": "df9566de-3c1d-43a9-a979-0f2dc1c32a96",
+    "username": "d.sito",
+    "firstName": "Davide",
+    "secondName": "Sito",
+    "telephone": "+3934237232132",
+    "orders": [
+        {
+            "orderNumber": "be818418-9083-4406-867e-7b84f0224fa3",
+            "deliveryAddress": "hello",
+            "numberOfPilotes": 5,
+            "totalCost": 6.65,
+            "creationDate": "25/04/2023 13:45:13",
+            "orderStatus": "CREATED",
+            "user": null
+        },
+        ETC. ETC....
+
+
+
+
+
+
+**NB: If you try to get order info (and the requesting user is not ADMIN) from the order of another user we will be blocked.
+Same thing if we try to get infos of another user and we are not ADMIN**
+
+-------------------------------
+BONUS&EXTRA 
 
 Bonus points I was not able to produce because of the given week I had to work on the project, I only had 2 halves of a day, so I had to leave out :
-Unit Testing and coverage (pretty straighforward)
+
+Unit Testing and coverage (pretty straighforward, easy but time consuming )
+A custom search a little bit more complex (here I just implemented the custom search for all the orders from users whose name contains the provided string)
+
 I would have liked to create different configuration/application files for different execution environment (local and kubernetes)
 I would have proceeded in this way:
   using a single common application.properties for common environment properties
