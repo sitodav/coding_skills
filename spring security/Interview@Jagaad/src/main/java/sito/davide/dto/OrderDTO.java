@@ -4,9 +4,13 @@ import java.io.Serializable;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import lombok.Getter;
 import lombok.Setter;
+import sito.davide.utils.dateserial.DataConSecondiDeserializer;
+import sito.davide.utils.dateserial.DataConSecondiSerializer;
 
 @Getter
 @Setter
@@ -24,6 +28,8 @@ public class OrderDTO implements Serializable
 	private String deliveryAddress;
 	private Integer numberOfPilotes;
 	private Double totalCost;
+	@JsonSerialize(using=DataConSecondiSerializer.class)
+	@JsonDeserialize(using=DataConSecondiDeserializer.class)
 	private Date creationDate;
 	private String orderStatus;
 	private UserDTO user;

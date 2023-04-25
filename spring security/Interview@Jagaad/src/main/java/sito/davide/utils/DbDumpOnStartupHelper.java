@@ -15,8 +15,10 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
+import sito.davide.dao.BusinessParameterDao;
 import sito.davide.dao.RoleDao;
 import sito.davide.dao.UserDao;
+import sito.davide.entity.TbBusinessParameter;
 import sito.davide.entity.TbRole;
 import sito.davide.entity.TbUser;
 
@@ -25,15 +27,18 @@ import sito.davide.entity.TbUser;
  * if not already present
  */
 @Configuration
-public class SecurityTablesStartupDump implements ApplicationListener<ContextRefreshedEvent>{
+public class DbDumpOnStartupHelper implements ApplicationListener<ContextRefreshedEvent>{
 	
-	private static final Logger log = LoggerFactory.getLogger(SecurityTablesStartupDump.class);
+	private static final Logger log = LoggerFactory.getLogger(DbDumpOnStartupHelper.class);
 
 	@Autowired
 	RoleDao roleDao;
 	
 	@Autowired
 	UserDao userDao;
+	
+	@Autowired
+	BusinessParameterDao parameterDao;
 	
 	@Autowired
 	BCryptPasswordEncoder pwEncoder;
@@ -79,12 +84,30 @@ public class SecurityTablesStartupDump implements ApplicationListener<ContextRef
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		 
 		
+		/*dump for two users at start */
+		
 		TbRole adminRole = createRoleIfNotExist(EUserRoles.USER_ADMIN.name());
 		TbRole customerRole = createRoleIfNotExist(EUserRoles.USER_CUSTOMER.name());
 		createUserIfNotExists("Giorgio","Molinari","+393423334232","admin",UUID.randomUUID().toString(), "admin", Arrays.asList(adminRole));
 		createUserIfNotExists("Davide","Sito","+3934237232132","d.sito", UUID.randomUUID().toString(),"d.sito", Arrays.asList(customerRole));
 		
 		
+		/*dump for business parameters */
+		TbBusinessParameter pilotesCost = new TbBusinessParameter();
+		pilotesCost.setName(EBusinessParameter.PILOTES_COST.name());
+		pilotesCost.setStrVal("1.33");
+		parameterDao.save(pilotesCost);
+		
+		TbBusinessParameter validWindow = new TbBusinessParameter();
+		validWindow.setName(EBusinessParameter.UPDATE_VALIDWINDOW_MNTS.name());
+		validWindow.setStrVal("5");
+		parameterDao.save(validWindow);
+		
+		TbBusinessParameter validPilotesQuantities = new TbBusinessParameter();
+		validPilotesQuantities.setName(EBusinessParameter.PILOTES_VALID_QUANTITIES.name());
+		validPilotesQuantities.setStrVal("5,10,15");
+		parameterDao.save(validPilotesQuantities);
+//		
 	}
 
 }

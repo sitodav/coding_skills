@@ -44,8 +44,8 @@ public class TbOrder
 	private String orderStatus;
 	
 	
-	@ManyToOne
-	@JoinColumn(name = "FK_USERID", referencedColumnName = "USER_ID")
+	@ManyToOne()
+	@JoinColumn(name = "USER_ID", referencedColumnName="USER_ID"  )
 	TbUser user;
 	
 }

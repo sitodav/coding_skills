@@ -2,7 +2,7 @@ package sito.davide.utils;
 
 public enum EOrderStatus
 {
-	CREATED, CONFIRMED, IN_PREPARATION, IN_DELIVERY,DELIVERED;
+	CREATED,   IN_PREPARATION, IN_DELIVERY,DELIVERED;
 	
 	public static EOrderStatus findByValue(String strValue)
 	{

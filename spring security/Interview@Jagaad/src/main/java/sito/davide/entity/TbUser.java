@@ -52,7 +52,7 @@ public class TbUser
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
 	List<TbOrder> orders;
 	
-	@ManyToMany
+	@ManyToMany 
 	@JoinTable(name = "TB_USER_ROLES", joinColumns = { @JoinColumn(name = "USER_ID") }, inverseJoinColumns = { @JoinColumn(name = "ROLE_ID") })
 	private Set<TbRole> roles;
 
