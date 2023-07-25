@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-configmap
+data:
+  #(own) application properties
+  demo_port: "8080"
+  demo_contextpath: /minikubedemo
+  #db properties
+  mariadb-host: mariadb-service
+  mariadb-port: "3306"
+  mariadb-name: minikube_demo
+  mariadb-lifetime: "500000"
+  mariadb-maxpoolsize: "500000"

@@ -1,0 +1,89 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minikubedemo-app
+spec:
+  selector:
+      matchLabels:
+        app: minikubedemo-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: minikubedemo-app
+    spec:
+      containers:
+        - name: minikubedemo-app
+          image: minikube_demo:latest
+          imagePullPolicy: Never
+          ports:
+          - containerPort: 8080
+          env:
+            #to enable debugging via port forward if necessary
+            - name: JAVA_TOOL_OPTIONS
+              value: '-Xdebug -agentlib:jdwp=transport=dt_socket,address=0.0.0.0:5005,server=y,suspend=n'
+            #to start with k8s profile (this will load the application-k8s.properties)
+            - name : SPRING_PROFILES_ACTIVE
+              value: 'minikube'
+            #my own parameters
+            - name: DEMO_CONTEXTPATH
+              valueFrom:
+                configMapKeyRef:
+                  name: app-configmap 
+                  key: demo_contextpath
+            - name: DEMO_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: app-configmap 
+                  key: demo_port
+             #FOR MY DB
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: app-configmap 
+                  key: mariadb-port
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: app-configmap 
+                  key: mariadb-name
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: app-configmap 
+                  key: mariadb-host
+            - name: DB_LIFETIME
+              valueFrom:
+                configMapKeyRef:
+                  name: app-configmap 
+                  key: mariadb-lifetime
+            - name: DB_MAXPOOLSIZE
+              valueFrom:
+                configMapKeyRef:
+                  name: app-configmap 
+                  key: mariadb-maxpoolsize
+            - name: DB_USERNAME
+              valueFrom: 
+                secretKeyRef:
+                  name: app-secret
+                  key: mariadb-root-username
+            - name: DB_PASSWORD
+              valueFrom: 
+                secretKeyRef:
+                  name: app-secret
+                  key: mariadb-root-password
+                  
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: minikubedemo-service
+spec:
+  selector:
+    app: minikubedemo-app
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+    nodePort: 30080
+  type: NodePort
