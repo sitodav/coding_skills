@@ -31,9 +31,10 @@ public class ChainOfResponsability {
 		
 		public Request processNext(Request req)
 		{
+			req = this.processRequest(req);
 			if(null != this.next)  //if we have next, send the processed (by me) request to it and return its result
 				return this.next.processRequest(req);
-			return req; //otherwise return directly the processed (by me) request
+			return req;  
 		}
 		
 		public abstract Request processRequest(Request req);
