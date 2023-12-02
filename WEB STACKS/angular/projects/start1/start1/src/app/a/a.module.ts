@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AComponent } from './a.component';
-import { BModule } from '../b/b.module';
+import { HellifyPipe } from './hellify.pipe';
 
 
 
 @NgModule({
   declarations: [
     AComponent
+    
+    
   ],
   imports: [
-    CommonModule,
-    BModule
-  ]
+    CommonModule, 
+  ],
+  exports : [AComponent ]
 })
 export class AModule { }
