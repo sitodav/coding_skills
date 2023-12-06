@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { AfterContentInit, Component, ContentChild, Input, OnInit } from '@angular/core';
 import { HellifyPipe } from '../a/hellify.pipe';
 import { AModule } from '../a/a.module';
 import { CommonModule } from '@angular/common';
+import { AComponent } from '../a/a.component';
 
 export type myType = "asd" | "what";;
 
@@ -13,11 +14,18 @@ export type myType = "asd" | "what";;
   standalone : true,
   imports : [  AModule, CommonModule]
 })
-export class BComponent {
+export class BComponent implements OnInit, AfterContentInit{
 
   sizeGrande = false;
+  public names : string[]= [];
   _myCustomStyle : Record<string,string> = {};
- 
+
+  @ContentChild(AComponent) aComp = {} as AComponent;
+  
+  ngOnInit(): void {
+    
+  }
+
   get myCustomStyle()
   {
     return {
@@ -35,8 +43,13 @@ export class BComponent {
 
   constructor()
   {
-    this.test("what");
+    this.names.push("test");
+    console.log(this.names);
   }
+  ngAfterContentInit(): void {
+    console.log("aaaaa : ",this.aComp.message);
+  }
+ 
 
   
 }

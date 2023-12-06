@@ -6,9 +6,16 @@
  
 
   <div class="card-container">
-     <app-a></app-a>
-     <app-b [message]="'tests'"></app-b>
-asdasd
+ 
+     <app-b *ngIf="visualizzaB" >
+
+        <p contentslot1 > mostra questo nel content slot 1</p>
+        <ng-container contentslot2>
+          <app-a [message]="'hgello'"></app-a>
+        </ng-container>
+        <p contentslot2 > mostra questo nel content slot 2</p>
+     </app-b>
+ 
     
   </div>
 
