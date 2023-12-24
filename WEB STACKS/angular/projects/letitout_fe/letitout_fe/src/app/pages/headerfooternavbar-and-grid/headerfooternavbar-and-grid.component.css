@@ -1,0 +1,57 @@
+ 
+
+.parent0
+{
+    width: 100vw; /*il container esterno deve prendere 100% height e width della view port (questo è un modo per dire di occupare tutto lo spazio disponibile indipendentemente dal size dei figli*/
+    height: 100vh;
+    display: grid; /* abilita visualizzazione a griglia per i figli */
+    grid-template-rows: minmax(50px, 5%) 1fr minmax(50px,5%); /*crea griglia di 1 colonna x 3 righe, la prima riga deve essere min 50px e max il 5% del container, la terza lo stesso, e la seconda prende tutto lo spazio rimanente */
+}
+
+.custom_header { /*questaa sarà la prima riga del parent 0*/
+    background-color: rgb(0, 255, 13);
+}
+.custom_footer { /*questa la terza riga del parent 0*/
+    background-color: blue;
+}
+
+.parent1 { /*questo container è figlio di parent 0 ed è la seconda riga del container padre */
+
+    display: grid; /*abilita disposizione a griglia per i figli */
+    grid-template-columns: minmax(100px, 10%) 1fr; /* 2 colonne x 1 riga, la prima colonna deve essere min 100px e max il 10% dello spazio del container, e la seconda tutto lo spazio rimanente*/
+    grid-template-rows: 1fr auto;
+    
+   
+}
+
+.custom_leftsidebar { /*questo sta nella prima colonna di parent1*/
+    background-color: blueviolet;
+}
+
+.custom_section { /*questo nella seconda colonna parent1*/
+    background-color: aquamarine;
+}
+
+
+
+/*parte degli elementi nella section */
+
+.container
+{
+    display: grid; /*abilita griglia per disposizione figli */
+    grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); /* il repeat prende come primo parametro quante ripetizioni, es 3 saranno 3 colonne in questo caso, e come secondo il size, ma settando min 200px e max il disponibile
+    avremo un grid layout che crea tante colonne quanto è lo spazio disponibile, in questo modo avremo una griglia responsiva senza dover usare media query ! */
+    gap: 10px; /*serve per dare la distanza tra i figli nel grid layout */
+    background-color: #1e90ff ;
+    padding: 1em;
+  
+    
+}
+
+.item
+{
+    background-color: aqua;
+    min-height: 50px;
+    display: grid; /*questo è per avere visualizzazione a griglia, ma lasceremo 1 x 1, è soltanto per usare il place-items per centrare perfettamente */
+    place-items: center;
+}

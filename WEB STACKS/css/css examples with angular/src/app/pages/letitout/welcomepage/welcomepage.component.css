@@ -1,0 +1,76 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:500,700"); /*imports dei fonts */
+
+/*variabili globali nel css ________________________________________*/
+:host /*per angular usare :host invece di :root */
+{
+    --secondary-color-bg:#1B1C1C;
+    --primary-color-bg:#F45B5B;
+    --primary-color-link:white;
+    --font-family-header:'Montserrat', sans-serif;
+    --font-weight-header:700;
+    --font-size-header-brand: 4.5vmin; /*il font size del brand link nell'header è 4.5% della minima tra le dimensioni di altezza e larghezza della view port */
+    --font-size-header-link: 3vmin; /*il font size del brand link nell'header è 2.5% della minima tra le dimensioni di altezza e larghezza della view port */
+}
+/*________________________________________*/
+
+/*container esterno________________________________________*/
+.container0
+{
+    width: 100vw; /*il container esterno deve prendere 100% height e width della view port (questo è un modo per dire di occupare tutto lo spazio disponibile indipendentemente dal size dei figli*/
+    height: 100vh;
+    display: grid;
+    grid-template-rows: minmax(5vh,10vh) 1fr minmax(5vh,10vh); /*creo griglia 1 col x 3 righe, prima (header) e terza ( footer) di size min di 100px e max 10% view port height*/
+}
+/*________________________________________*/
+
+
+/*stili header________________________________________*/
+.header 
+{
+    padding-left:5vw; /*l'header ha padding left e right del 5% della view port width*/
+    padding-right:5vw;
+    background-color: var(--secondary-color-bg);
+    display: grid; /*display grid , per poter separare il primo elemento cioè il brand a sx e gli altri 2 a destra, se avessimo usato flex non avremmo potuti separarli direttamente*/
+    grid-template-columns: 1fr   minmax(5vw,auto) minmax(5vw,auto); /*crea 3 colonne, la seconda e terza minimo 10% della viewport width, e max lo spazio rimanente, la prima lo spazio disponibile/3 */
+    align-items: center;  /*allineamento verticale , al centro, per elementi nella griglia */
+    gap: 3vw; /*separazione tra gli elementi della griglia , 3% della viewport width*/
+}
+
+
+
+.header_brand
+{
+    color: var(--primary-color-link);
+    text-decoration: none;
+    font-size: var(--font-size-header-brand); 
+    font-weight: var(--font-weight-header);
+    font-family: var(--font-family-header);
+    justify-self:left; 
+    
+}
+
+.header_link
+{
+    color: var(--primary-color-link);
+    text-decoration: none;
+    font-size: var(--font-size-header-link);
+    font-family: var(--font-family-header);
+    font-weight: var(--font-weight-header);;
+}
+
+/*fine stili header ________________________________________*/
+
+/*stili section centrale ________________________________________*/
+.section
+{
+    background-color: var(--primary-color-bg);
+}
+/*fine stili section centrale ________________________________________*/
+
+
+/*stili footer ________________________________________*/
+.footer
+{
+    background-color: var(--secondary-color-bg);
+}
+/*fine stili footer ________________________________________*/

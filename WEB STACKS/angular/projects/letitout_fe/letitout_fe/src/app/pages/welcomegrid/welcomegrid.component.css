@@ -1,0 +1,23 @@
+:root /*dimostrazione uso variabile */
+{
+    --mybg: #1e90ff ;
+}
+.container
+{
+    display: grid; /*abilita griglia per disposizione figli */
+    grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); /* il repeat prende come primo parametro quante ripetizioni, es 3 saranno 3 colonne in questo caso, e come secondo il size, ma settando min 200px e max il disponibile
+    avremo un grid layout che crea tante colonne quanto è lo spazio disponibile, in questo modo avremo una griglia responsiva senza dover usare media query ! */
+    gap: 10px; /*serve per dare la distanza tra i figli nel grid layout */
+    background-color: var(--mybg);
+    padding: 1em;
+  
+    
+}
+
+.item
+{
+    background-color: aqua;
+    min-height: 50px;
+    display: grid; /*questo è per avere visualizzazione a griglia, ma lasceremo 1 x 1, è soltanto per usare il place-items per centrare perfettamente */
+    place-items: center;
+}
