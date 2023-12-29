@@ -30,13 +30,15 @@ public class Solution
 
 	public static void main(String[] args)
 	{
-		int[] nums = new int[] { 2, 2, 0, 1, 1 };
+		int[] nums = new int[] { 2,3,1,1,4};
 		int res = solution(nums);
 		System.out.println(res);
 	}
 
 	public static int solution(int[] nums)
 	{
+
+
 
 		if (nums.length > 1)
 		{
@@ -69,13 +71,13 @@ public class Solution
 						bfsQueue.add(poppedElementIdx + i);
 						previousJumpsQueue.add(previousJumpsForPoppedElementIdx + 1);
 						memoization.put(poppedElementIdx + i, true); /*update memoization */
-					}
-
+					} 
 				}
 			}
 		}
 
 		return 0;
+	
 	}
 
 }
