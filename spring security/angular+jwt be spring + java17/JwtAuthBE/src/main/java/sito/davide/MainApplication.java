@@ -9,10 +9,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
-import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import sito.davide.dao.TbCourseRepository;
 import sito.davide.dao.TbUserRepository;
 import sito.davide.entity.TbCourse;
@@ -29,7 +29,8 @@ public class MainApplication
 	private TbUserRepository userRepo;
 	@Autowired
 	private TbCourseRepository courseRepo;
-	
+	@Autowired
+	private BCryptPasswordEncoder dbPasswordEncoder;
 	
 	private static Logger log = LoggerFactory.getLogger(MainApplication.class);
 	public static void main(String[] args)
@@ -42,7 +43,11 @@ public class MainApplication
 	{
 		return (args) -> {
 			log.info("STARTED");
-			TbUser user1 = new TbUser(null, "Davide","Sito","sitodskij"+(Math.random()*100),"sitodskij"+(Math.random()*100));
+			
+			String decodedPw = "sitodskij"+(Math.random()*100);
+			String username =  "sitodskij"+(Math.random()*100);
+			TbUser user1 = new TbUser(null, "Davide","Sito",username,dbPasswordEncoder.encode(decodedPw));
+			log.info("username : "+username+" decoded pw "+decodedPw);
 			userRepo.save(user1);
 			log.info("SAVED USER "+user1);
 			 

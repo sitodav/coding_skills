@@ -2,6 +2,7 @@ package sito.davide.api;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import sito.davide.dto.UserDTO;
+import sito.davide.service.UserService;
 
 @RestController
 @RequestMapping("/auth")
@@ -19,11 +21,13 @@ public class AuthController
 
 	public static Logger log = LoggerFactory.getLogger(AuthController.class);
 	
+	@Autowired
+	UserService userService;
 	
 	@PostMapping("/login")
 	public ResponseEntity<UserDTO> login(
 				@RequestBody UserDTO user) throws Exception
 	{
-		return null;
+		return ResponseEntity.ok(userService.login(user));
 	}
 }

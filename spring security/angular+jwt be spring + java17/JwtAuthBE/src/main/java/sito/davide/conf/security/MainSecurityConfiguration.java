@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
@@ -26,7 +27,11 @@ import sito.davide.dto.ErrorDTO;
 public class MainSecurityConfiguration
 {
 	
-	;
+	@Bean
+	public BCryptPasswordEncoder registerDBPasswordEncoder()
+	{
+		return new BCryptPasswordEncoder();
+	}
 	
 	@Bean
 	public AuthenticationEntryPoint registerInvalidCredentialBean()

@@ -56,6 +56,8 @@ public class CustomJWTFilter extends OncePerRequestFilter
 			}
 		}
 		
+		filterChain.doFilter(request, response);
+		
 	}
 	
 }

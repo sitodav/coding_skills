@@ -2,6 +2,8 @@ package sito.davide.dto;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,7 +17,9 @@ public class UserDTO implements Serializable
 	private String firstname;
 	private String lastname;
 	private String username;
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY) //to avoid going back to client
 	private String password;
+	
 	private String jwt;
 	
 	public UserDTO() {}
