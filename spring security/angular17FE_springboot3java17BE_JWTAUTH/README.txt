@@ -1,0 +1,2 @@
+Backend in Spring Boot (>3.0) with Java 17, OpenAPI (Swagger) for security with JWT Token
+Front end in Angular 17, with standalone components (no modules) , authentication/interceptors/guards for jwt auth
