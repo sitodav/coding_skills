@@ -1,1 +1,17 @@
-<p>login works!</p>
+<div>
+
+    <form #loginForm="ngForm">
+        <div>
+            <label for="username_inputfield">Username:</label>
+            <input id="username_inputfield" type="text" name="username" [(ngModel)]="user.username" required/>
+            <span *ngIf="loginForm.form.controls['username']?.touched && !loginForm.form.controls['username']?.valid">Username required</span>
+         </div>
+         <div>
+            <label for="password_inputfield">Password:</label>
+            <input id="password_inputfield" type="password" name="password" [(ngModel)]="user.password" required/>
+            <span *ngIf="loginForm.form.controls['password']?.touched && !loginForm.form.controls['password']?.valid">Password required</span>
+        </div>
+        <button (click)="loginHandler()" [disabled]="!loginForm.valid">Login</button>
+    </form>
+
+</div> 

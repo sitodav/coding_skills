@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../dto/user.dto';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { EnvService } from 'src/environments/env.service';
 
 @Injectable({
@@ -48,5 +48,16 @@ export class AuthService {
   public setUserData(user : User )
   {
     localStorage.setItem(this.userDataKey,JSON.stringify(user));
+  }
+
+
+  public logout = ( ) : Observable<User> => {
+     return this.httpClient.post<User>(this.envService.buildUrl("logoutEndpoint"),{} );
+    
+
+  }
+
+  public clearUserData = () : void =>{
+    localStorage.removeItem(this.userDataKey);
   }
 }

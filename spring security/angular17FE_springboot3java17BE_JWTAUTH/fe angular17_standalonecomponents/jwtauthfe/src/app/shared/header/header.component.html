@@ -1,4 +1,6 @@
 <div>
-    <a [routerLink]="'/home'">Home</a>
-    <a [routerLink]="'/login'">Login</a>
+    <a [routerLink]="'/home'" *ngIf=" authService.isAuthenticated()">Home</a>
+    <a [routerLink]="'/login'" *ngIf=" !authService.isAuthenticated()">Login</a>
+    <a [routerLink]="'/logout'" *ngIf=" authService.isAuthenticated()">Logout</a>
+    
 </div>

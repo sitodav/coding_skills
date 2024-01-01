@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { LoggedInGuard } from './guards/logged.guard';
 import { authInterceptor } from './interceptor/auth.interceptor';
+import { LogoutComponent } from './logout/logout.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,12 @@ const routes: Routes = [
    {
       path : "login",
       component : LoginComponent
+   }
+   ,
+   {
+      path : "logout",
+      component : LogoutComponent,
+      canActivate: [LoggedInGuard]
    }
 ];
 

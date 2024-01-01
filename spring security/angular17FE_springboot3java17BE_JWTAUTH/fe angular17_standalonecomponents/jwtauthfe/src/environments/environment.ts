@@ -9,7 +9,8 @@ export const environment  = {
 
     /*and map here*/
     "loginEndpoint" : "auth/login",
-    "coursesEndpoint" : "courses"
+    "coursesEndpoint" : "courses",
+    "logoutEndpoint" : "auth/logout"
     
 
     
