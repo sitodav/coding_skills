@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,5 +30,13 @@ public class AuthController
 				@RequestBody UserDTO user) throws Exception
 	{
 		return ResponseEntity.ok(userService.login(user));
+	}
+	
+	@PostMapping("/logout")
+	public ResponseEntity<UserDTO> logout(
+				@RequestBody UserDTO user) throws Exception
+	{
+		SecurityContextHolder.clearContext();
+		return ResponseEntity.ok(user);
 	}
 }
